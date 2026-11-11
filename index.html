@@ -1,232 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>siclvceatlvx</title>
-    <!-- Google Fonts for Gothic / Blackletter Aesthetics -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>siclvceatlvx</title>
+		<!-- Google Fonts for Gothic / Blackletter Aesthetics -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 
-    
-    <style>        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+		<style>        
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            background-color: #050505; /* \m/ */
-            color: #e0e0e0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
+	body, html {
+		width: 100%;
+		height: 100%;
+		background-color: #050505; /* \m/ */
+		color: #e0e0e0;
+		font-family: 'Inter', sans-serif;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		position: relative;
+	}
 
-        /* overlay */
-        .noise-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(25, 25, 25, 0.4) 0%, rgba(5, 5, 5, 0.95) 80%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .vignette {
-            position: absolute;
-            inset: 0;
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
-            pointer-events: none;
-            z-index: 2;
-        }
+	/* overlay */
+	.noise-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(circle at center, rgba(25, 25, 25, 0.4) 0%, rgba(5, 5, 5, 0.95) 80%);
+		pointer-events: none;
+		z-index: 1;
+	}
 
-        /* Container Layout */
-        .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 90vw;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
-        }
+	.vignette {
+		position: absolute;
+		inset: 0;
+		box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
+		pointer-events: none;
+		z-index: 2;
+	}
 
-        /* blackletter because why the fuck not */
-        .gothic-title {
-            font-family: 'UnifrakturCook', cursive;
-            font-size: clamp(3rem, 10vw, 8.5rem);
-            font-weight: 900;
-            color: #eaeaea;
-            letter-spacing: 0.05em;
-            line-height: 0.9;
-            user-select: none;
-            /* max evil */
-            text-shadow: 
-                0 0 20px rgba(255, 255, 255, 0.15),
-                0 0 40px rgba(150, 150, 150, 0.08),
-                2px 2px 0px #000,
-                -2px -2px 0px #000;
-            transition: transform 0.4s ease, text-shadow 0.4s ease;
-        }
+	/* Container Layout */
+	.container {
+		position: relative;
+		z-index: 10;
+		text-align: center;
+		max-width: 90vw;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2.5rem;
+	}
 
-        .gothic-title:hover {
-            text-shadow: 
-                0 0 30px rgba(255, 255, 255, 0.3),
-                0 0 60px rgba(200, 200, 200, 0.15);
-        }
+	/* blackletter because why the fuck not */
+	.gothic-title {
+		font-family: 'UnifrakturCook', cursive;
+		font-size: clamp(3rem, 10vw, 8.5rem);
+		font-weight: 900;
+		color: #eaeaea;
+		letter-spacing: 0.05em;
+		line-height: 0.9;
+		user-select: none;
+		/* max evil */
+		text-shadow: 
+			0 0 20px rgba(255, 255, 255, 0.15),
+		0 0 40px rgba(150, 150, 150, 0.08),
+		2px 2px 0px #000,
+		-2px -2px 0px #000;
+	transition: transform 0.4s ease, text-shadow 0.4s ease;
+	}
 
-        .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.75rem, 1.5vw, 1.1rem);
-            color: #666;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            margin-top: -1rem;
-        }
+	.gothic-title:hover {
+		text-shadow: 
+			0 0 30px rgba(255, 255, 255, 0.3),
+		0 0 60px rgba(200, 200, 200, 0.15);
+	}
 
-        .button-group {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1rem;
-        }
+	.subtitle {
+		font-family: 'Cinzel', serif;
+		font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+		color: #666;
+		letter-spacing: 0.4em;
+		text-transform: uppercase;
+		margin-top: -1rem;
+	}
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2.25rem;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #d0d0d0;
-            background: #0d0d0d;
-            border: 1px solid #333333;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
+	.button-group {
+		display: flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 1rem;
+	}
 
-        /* charlie sheen */
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.08), 
-                transparent
-            );
-            transition: left 0.6s ease;
-        }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2.25rem;
+		font-family: 'Cinzel', serif;
+		font-weight: 700;
+		font-size: 0.95rem;
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #d0d0d0;
+		background: #0d0d0d;
+		border: 1px solid #333333;
+		border-radius: 2px;
+		cursor: pointer;
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		position: relative;
+		overflow: hidden;
+	}
 
-        .btn:hover::before {
-            left: 100%;
-        }
+	/* charlie sheen */
+	.btn::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			90deg, 
+			transparent, 
+			rgba(255, 255, 255, 0.08), 
+			transparent
+				);
+		transition: left 0.6s ease;
+	}
 
-        .btn:hover {
-            color: #ffffff;
-            border-color: #888888;
-            background: #161616;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.07);
-            transform: translateY(-2px);
-        }
+	.btn:hover::before {
+		left: 100%;
+	}
 
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
+	.btn:hover {
+		color: #ffffff;
+		border-color: #888888;
+		background: #161616;
+		box-shadow: 0 0 25px rgba(255, 255, 255, 0.07);
+		transform: translateY(-2px);
+	}
 
-        /* SVG Icon styling */
-        .btn-icon {
-            width: 26px;
-            height: 26px;
-            fill: currentColor;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
+	.btn:active {
+		transform: translateY(0);
+		box-shadow: none;
+	}
 
-        .btn:hover .btn-icon {
-            opacity: 1;
-        }
+	/* SVG Icon styling */
+	.btn-icon {
+		width: 26px;
+		height: 26px;
+		fill: currentColor;
+		opacity: 0.8;
+		transition: opacity 0.3s ease;
+	}
 
-        /* Responsive spacing for mobile viewports */
-        @media (max-width: 600px) {
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
+	.btn:hover .btn-icon {
+		opacity: 1;
+	}
 
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
-</head>
-<body>
+	/* Modal / Lightbox Overlay */
+	.modal-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.75);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		z-index: 100;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.4s ease;
+		padding: 1.5rem;
+	}
 
-    <!-- Ambient background layers -->
-    <div class="noise-bg"></div>
-    <div class="vignette"></div>
+	.modal-overlay.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
 
-    <!-- Main Content Box -->
-    <main class="container">
-        <!-- Main Gothic Title -->
-        <h1 class="gothic-title">siclvceatlvx</h1>
-        
-        <!-- Optional minimalist subhead -->
-        <p class="subtitle">more at</p>
+	/* Modal Card */
+	.modal-content {
+		background: #0a0a0a;
+		border: 1px solid #2a2a2a;
+		box-shadow: 0 0 50px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 255, 255, 0.03);
+		max-width: 580px;
+		width: 100%;
+		max-height: 85vh;
+		overflow-y: auto;
+		padding: 2.5rem 2rem;
+		position: relative;
+		transform: scale(0.92) translateY(10px);
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		text-align: left;
+	}
 
-        <!-- Social Buttons -->
-        <div class="button-group">
-            <!-- YouTube Button -->
-            <a alt="youtube" href="https://www.youtube.com/@siclvceatlvx" target="_blank" rel="noopener noreferrer" class="btn">
-                <svg class="btn-icon" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>                
-            </a>
+	.modal-overlay.active .modal-content {
+		transform: scale(1) translateY(0);
+	}
 
-            <!-- Instagram Button -->
-            <a alt="Instagram" href="https://www.instagram.com/siclvceatlvx/" target="_blank" rel="noopener noreferrer" class="btn">
-                <svg class="btn-icon" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                
-            </a>
+	/* Close Button */
+	.close-btn {
+		position: absolute;
+		top: 1rem;
+		right: 1.25rem;
+		background: transparent;
+		border: none;
+		color: #777;
+		font-size: 1.8rem;
+		line-height: 1;
+		cursor: pointer;
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
 
-            <!-- GitHub Button -->
-            <a alt="GitHub" href="https://github.com/miintz/" target="_blank" rel="noopener noreferrer" class="btn">
-                <svg class="btn-icon" viewBox="0 0 24 24">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-            </a>
-        </div>
-    </main>
+	.close-btn:hover {
+		color: #ffffff;
+		transform: scale(1.1);
+	}
 
-</body>
+	/* Hexagonal Image Container */
+	.hex-frame {
+		width: 130px;
+		height: 145px;
+		margin: 0 auto 1.5rem auto;
+		clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+		background: #1a1a1a;
+		border: 1px solid #333;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.hex-frame img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: contrast(90%);
+		transition: filter 0.4s ease;
+	}
+
+	.hex-frame:hover img {
+		filter: contrast(100%);
+	}
+
+	/* Quote Section */
+	.borges-quote {
+		font-family: 'Cinzel', serif;
+		font-size: 0.85rem;
+		font-style: italic;
+		color: #888888;
+		text-align: center;
+		margin-bottom: 2rem;
+		line-height: 1.6;
+		letter-spacing: 0.05em;
+		border-bottom: 1px solid #1a1a1a;
+		padding-bottom: 1.25rem;
+	}
+
+	/* Body Text & Drop Cap */
+	.bio-text {
+		font-family: 'Cormorant+Garamond', serif;
+		font-size: 0.92rem;
+		line-height: 1.8;
+		color: #cccccc;
+		text-align: justify;
+	}
+
+	.bio-text p {
+		text-indent: 2em;
+		margin-bottom: 1rem;
+	}
+
+	.bio-text p::first-letter {
+		font-family: 'UnifrakturCook', cursive;
+		font-size: 3.2rem;
+		float: left;
+		line-height: 0.8;
+		padding-right: 0.4rem;
+		padding-top: 0.1rem;
+		color: #ffffff;
+	}
+
+	/* Responsive spacing for mobile viewports */
+	@media (max-width: 600px) {
+		.button-group {
+			flex-direction: column;
+			width: 100%;
+		}
+
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.modal-content {
+			padding: 2rem 1.25rem;
+		}
+	}
+
+
+	.subtitle-hex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0.6rem 1rem 0;
+		color: #444444; /* Subtle dark grey match */
+		width: 20px;
+		height: 20px;
+	}
+
+		</style>
+	</head>
+	<body>
+
+		<!-- Ambient background layers -->
+		<div class="noise-bg"></div>
+		<div class="vignette"></div>
+
+		<!-- Main Content Box -->
+		<main class="container">
+			<!-- Main Gothic Title -->
+			<h1 class="gothic-title">siclvceatlvx</h1>
+
+			<div class="subtitle-hex" aria-hidden="true">
+				<svg viewBox="0 0 100 100">
+					<polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" stroke-width="6"/>
+				</svg>
+			</div>
+
+			<!-- Social Buttons -->
+			<div class="button-group">
+				<!-- YouTube Button -->
+				<a alt="youtube" href="https://www.youtube.com/@siclvceatlvx" target="_blank" rel="noopener noreferrer" class="btn">
+					<svg class="btn-icon" viewBox="0 0 24 24">
+						<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+					</svg>                
+				</a>
+
+				<!-- Instagram Button -->
+				<a alt="Instagram" href="https://www.instagram.com/siclvceatlvx/" target="_blank" rel="noopener noreferrer" class="btn">
+					<svg class="btn-icon" viewBox="0 0 24 24">
+						<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+					</svg>
+				</a>
+
+				<!-- GitHub Button -->
+				<a alt="GitHub" href="https://github.com/miintz/" target="_blank" rel="noopener noreferrer" class="btn">
+					<svg class="btn-icon" viewBox="0 0 24 24">
+						<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+					</svg>
+				</a>
+
+				<!-- About Modal Trigger Button -->
+				<button id="about-trigger" class="btn" aria-label="About">
+					About
+				</button>
+			</div>
+		</main>
+
+		<!-- Modal / Lightbox Popover -->
+		<div id="about-modal" class="modal-overlay" role="dialog" aria-modal="true">
+			<div class="modal-content">
+				<!-- Mobile/Desktop Close Button -->
+				<button id="modal-close" class="close-btn" aria-label="Close modal">&times;</button>
+
+				<!-- Hexagonal Profile Image Frame -->
+				<div class="hex-frame">
+					<img src="profile.jpg" alt="Profile" onerror="this.src='https://placehold.co/200x200/111111/666666?text=HEX'">
+				</div>
+
+				<div class="borges-quote">
+					“With relief, with humiliation, with terror, he understood that he too was a mere appearance, dreamed by another.”
+					<br>
+					<span style="display:block; margin-top:0.5rem; font-size:0.75rem; letter-spacing:0.2em; color:#555;">— JORGE LUIS BORGES</span>
+				</div>
+
+				<!-- Indented Bio Text with Gothic Drop Cap -->
+				<div class="bio-text">
+					<p>
+					I like to make pretty things out wood, mainly focused on kumiko, from the attic of home. Occassional side-quests will occur, since I do not have full control over impulses, and being the human magpie I am, can't resist new shiny things either. Get in touch using the social media channels on the main page. Thank you for taking an interest. More to come soon.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Minimal JS for Modal Control -->
+		<script>
+			const trigger = document.getElementById('about-trigger');
+			const modal = document.getElementById('about-modal');
+			const closeBtn = document.getElementById('modal-close');
+
+			function openModal() {
+				modal.classList.add('active');
+			}
+
+			function closeModal() {
+				modal.classList.remove('active');
+			}
+
+			trigger.addEventListener('click', openModal);
+			closeBtn.addEventListener('click', closeModal);
+
+			// Close on clicking outside the modal content box
+			modal.addEventListener('click', (e) => {
+				if (e.target === modal) {
+					closeModal();
+				}
+			});
+
+			// Close on Escape key press
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && modal.classList.contains('active')) {
+					closeModal();
+				}
+			});
+		</script>
+
+	</body>
 </html>
