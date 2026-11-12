@@ -1,0 +1,152 @@
+/* overlay */
+.noise-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at center, rgba(25, 25, 25, 0.4) 0%, rgba(5, 5, 5, 0.95) 80%);
+	pointer-events: none;
+	z-index: 1;
+}
+
+.vignette {
+	position: absolute;
+	inset: 0;
+	box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
+	pointer-events: none;
+	z-index: 2;
+}
+
+/* Container Layout */
+.container {
+	position: relative;
+	z-index: 10;
+	text-align: center;
+	max-width: 90vw;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2.5rem;
+}
+
+/* blackletter because why the fuck not */
+.gothic-title {
+	font-family: 'UnifrakturCook', cursive;
+	font-size: clamp(3rem, 10vw, 8.5rem);
+	font-weight: 900;
+	color: #eaeaea;
+	letter-spacing: 0.05em;
+	line-height: 0.9;
+	user-select: none;
+	/* max evil */
+	text-shadow: 
+	0 0 20px rgba(255, 255, 255, 0.15),
+	0 0 40px rgba(150, 150, 150, 0.08),
+	2px 2px 0px #000,
+	-2px -2px 0px #000;
+	transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+.gothic-title:hover {
+	text-shadow: 
+	0 0 30px rgba(255, 255, 255, 0.3),
+	0 0 60px rgba(200, 200, 200, 0.15);
+}
+
+.subtitle {
+	font-family: 'Cinzel', serif;
+	font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+	color: #666;
+	letter-spacing: 0.4em;
+	text-transform: uppercase;
+	margin-top: -1rem;
+}
+
+.button-group {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 1rem 2.25rem;
+	font-family: 'Cinzel', serif;
+	font-weight: 700;
+	font-size: 0.95rem;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #d0d0d0;
+	background: #0d0d0d;
+	border: 1px solid #333333;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	position: relative;
+	overflow: hidden;
+}
+
+/* charlie sheen */
+.btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+	90deg, 
+	transparent, 
+	rgba(255, 255, 255, 0.08), 
+	transparent
+	);
+	transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+	left: 100%;
+}
+
+.btn:hover {
+	color: #ffffff;
+	border-color: #888888;
+	background: #161616;
+	box-shadow: 0 0 25px rgba(255, 255, 255, 0.07);
+	transform: translateY(-2px);
+}
+
+.btn:active {
+	transform: translateY(0);
+	box-shadow: none;
+}
+
+/* SVG Icon styling */
+.btn-icon {
+	width: 26px;
+	height: 26px;
+	fill: currentColor;
+	opacity: 0.8;
+	transition: opacity 0.3s ease;
+}
+
+.btn:hover .btn-icon {
+	opacity: 1;
+}
+
+.subtitle-hex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.6rem 1rem 0;
+	color: #444444; /* Subtle dark grey match */
+	width: 20px;
+	height: 20px;
+}
