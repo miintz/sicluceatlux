@@ -1,63 +1,76 @@
 /* --- Kosmos Firmament (Top Arc) --- */
 #kosmos-firmament {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 35vh;
-  pointer-events: none;
-  z-index: 9999; /* Sits behind modal/flashlight layers, permanently visible */
-  overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 35vh;
+	pointer-events: none;
+	z-index: 9999; /* Sits behind modal/flashlight layers, permanently visible */
+	overflow: hidden;
 }
 
 .star {
-  position: absolute;
-  background-color: #e2e8f0;
-  border-radius: 50%;
-  opacity: var(--min-opacity, 0.2);
-  animation: twinkle var(--duration, 4s) ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
+	position: absolute;
+	background-color: #e2e8f0;
+	border-radius: 50%;
+	opacity: var(--min-opacity, 0.2);
+	animation: twinkle var(--duration, 4s) ease-in-out infinite;
+	animation-delay: var(--delay, 0s);
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: var(--min-opacity, 0.2); }
-  50% { opacity: var(--max-opacity, 0.8); }
+	0%, 100% { opacity: var(--min-opacity, 0.2); }
+	50% { opacity: var(--max-opacity, 0.8); }
 }
 /* --- Kosmos Telemetry (Bottom Ticks) --- */
 #kosmos-telemetry {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: 28px;
-  pointer-events: none;
-  z-index: 9997;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 1.5rem 6px 1.5rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.2);
-  letter-spacing: 0.2em;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 28px;
+	pointer-events: none;
+	z-index: 9997;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding: 0 1.5rem 6px 1.5rem;
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 0.7rem;
+	color: rgba(255, 255, 255, 0.2);
+	letter-spacing: 0.2em;
+	border-top: 1px solid rgba(255, 255, 255, 0.04);
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .telemetry-ticks {
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
+	display: flex;
+	gap: 10px;
+	align-items: flex-end;
 }
 
 .tick {
-  width: 1px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.15);
+	width: 1px;
+	height: 4px;
+	background-color: rgba(255, 255, 255, 0.15);
 }
 
 .tick-major {
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.35);
+	height: 8px;
+	background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+	/* Hide the telemetry bar entirely on mobile to clear the bottom layout */
+	#kosmos-telemetry {
+		display: none;
+	}
+
+	/* Let the firmament vault compress slightly on smaller screens */
+	#kosmos-firmament {
+		height: 35vh;
+	}
 }
 

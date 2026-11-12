@@ -150,3 +150,26 @@
 	width: 18px;
 	height: 18px;
 }
+
+@media (max-width: 768px) {
+  .button-group, nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .button-group a,
+  .button-group button,
+  nav a,
+  nav button {
+    width: 150px; 
+    max-width: 85vw; /* Prevents overflow on tiny screens */
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+}
+
